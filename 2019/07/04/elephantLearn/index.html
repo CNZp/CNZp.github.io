@@ -11,15 +11,15 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="学习笔记,极客时间,">
+    <meta name="keywords" content="学习笔记,经典书籍,">
   
 
   
-    <meta name="description" content="“重学前端”专栏——学习笔记（1）">
+    <meta name="description" content="《Thinking In UML》学习——用例(1)">
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>“重学前端”专栏——学习笔记（1） [ 打杂程序员 ]</title>
+  <title>《Thinking In UML》学习——用例(1) [ 打杂程序员 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -64,19 +64,19 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        “重学前端”专栏——学习笔记（1）
+        《Thinking In UML》学习——用例(1)
       </h1>
       <span>
         
-        <time class="time" datetime="2019-07-03T06:07:42.000Z">
-        2019-07-03
+        <time class="time" datetime="2019-07-04T04:00:49.000Z">
+        2019-07-04
       </time>
         
       </span>
       <span class="slash">/</span>
       <span class="post-meta">
       <span class="post-tags">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/极客时间/">极客时间</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/经典书籍/">经典书籍</a></li></ul>
       </span>
     </span>
       <span class="slash">/</span>
@@ -86,13 +86,10 @@
     </header>
 
     <div class="post-content">
-      <h1 id="前端知识框架"><a href="#前端知识框架" class="headerlink" title="前端知识框架"></a>前端知识框架</h1><p><img src="/images/relearnFrontend1.jpg" alt></p>
-<blockquote>
-<p>前端需求量大、专业人才稀缺，更因为前端本身运行在浏览器中，有大量兼容工作要做。所以前端架构的主要职责是兼容性、复用和能力扩展。</p>
-</blockquote>
-<h1 id="HTML语义"><a href="#HTML语义" class="headerlink" title="HTML语义"></a>HTML语义</h1><p>对于语义标签，作者的态度是：“用对”比“不用”好，“不用”比“用错”好。当然了，我觉得有理想的前端工程师还是应该去追求“用对”它们。</p>
-<p>是否要语义化的问题：我们应该分开一些场景来看语义，把它用在合适的场景下，可以获得额外的效果。本篇文中，我们至少涉及了三个明确的场景：<br>自然语言表达能力的补充； em<br>文章标题摘要；h/hgroup<br>适合机器阅读的整体结构。article/header/section/footer</p>
-<p>某读者理解的语义化，就是对机器友好对人友好。在富文本这类场景时，我们应该尽量地语义化；写软件界面时，保持整体上的结构化即可。</p>
+      <h1 id="用例的概念。"><a href="#用例的概念。" class="headerlink" title="用例的概念。"></a>用例的概念。</h1><p>用例由参与者驱动。是相对独立的，具有边界。用例的执行结果对参与者来说是可观测的和有意义的。<br>完整的用例用例定义由参与者、前置条件、场景（用例实例）、后置条件构成。<br>用例的作用是捕捉功能性需求。</p>
+<h1 id="用例和功能的误区。"><a href="#用例和功能的误区。" class="headerlink" title="用例和功能的误区。"></a>用例和功能的误区。</h1><p>用例是能给使用者提供一个执行结果的活动。用例是捕获功能性需求的，但有一个前提，即这个功能性需求是从参与者的角度触发的，用例并不是功能。<br>如果非要从功能的角度解释用例，那么用例可以解释为一系列完成一个特定目标的“功能”的组合，针对不同的应用场景，这些“功能”体现不同的组合方式。不是先有了这些“功能”才来组合某个场景，而是先有了场景，才分解出“功能”。这里的“功能”之所以打引号，是因为在UML里没有功能这个词，实际上从场景分解出来的是对象，这些对象通过消息相互交流而完成场景。<br>举例：从功能的角度触发，对电视的描述是能开关，能显示，可以调频道，调声音，以上四者是独立的；从用例的角度触发，对电视的描述是有一个人要观看电视节目的用例，要完成这个用例，第一步需要先打开开关，调到自己喜欢的频道，如果声音不合适，可以调节音量，以上三者是因人的需求而相关起来的。</p>
+<h1 id="目标和步骤的误区。"><a href="#目标和步骤的误区。" class="headerlink" title="目标和步骤的误区。"></a>目标和步骤的误区。</h1><p>一个用例是参与者对目标系统的一个愿望，一个完整的事件。为了完成这个事件需要经由很多步骤，但这些步骤不能够完整地反映参与者的目标，不能够作为用例。<br>寄信的完整用例(参与人为寄信人)：买信封-&gt;买邮票-&gt;付钱-&gt;投递。<br>步骤也是可以作为用例的，但是不能用他们来描绘功能性的需求。在进行用例分析的时候，他们可以作为概念用例使用，或者在建立系统模型的时候，他们页可以作为系统用例使用。但是在描述功能性需求时，记住用例一定是参与者的完整目标。<br>步骤可以作为用例的。在概念建模阶段，由于需求已经捕获，在对需求进行分析时，实际上我们已经进入用例的内部。进入用例的内部意味着边界已经改变。现在参与者的所有活动都处于该用例的上下文环境之内，比如，邮局收银员的完整目标是收钱就很合理。边界改变带来了这种变化。<br>寄信和收钱，两个用例大小不同，边界不同，参与者也不同，它们显然不应该同时出现在一个视图里。</p>
+<h1 id="用例粒度的误区。"><a href="#用例粒度的误区。" class="headerlink" title="用例粒度的误区。"></a>用例粒度的误区。</h1><p>产生用例粒度错误的原因首先是分不清目标和步骤。<br>用例粒度另一个常常被误用的误区是在同一个需求阶段中的用例粒度大小不一。本质是不清楚边界。<br>举例：网上购物系统理解成最大的用例，其中边界变化时，买家购买商品，卖家发布商品，管理员管理网站则构成了步骤。<br>如果在心中没有时时紧守边界的建模者，非常容易因为嫌粒度太大什么都没说清楚而视图把需求说得更清楚，其结果反而是过犹不及，不自觉地突破了无形边界的限制，把用例的粒度搞得一片混乱。<br>举例：表达系统管理员修改订单的需求，把其作为和管理员管理网站一个抽象程度的用例，是错误的。表达为购买商品的步骤，更为合适。可以这样表达业务场景：买家提交修改订单请求，系统管理员修改订单请求。由于已经位于购买商品的上下文环境里，它就能很自然地与其他购买商品的关键概念构成用例场景。<br>同一个需求阶段，必须保持所有用例的粒度在同一量级。</p>
 
     </div>
 
@@ -102,7 +99,7 @@
     
   <div id="toc" class="toc-article">
     <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前端知识框架"><span class="toc-text">前端知识框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML语义"><span class="toc-text">HTML语义</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#用例的概念。"><span class="toc-text">用例的概念。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例和功能的误区。"><span class="toc-text">用例和功能的误区。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目标和步骤的误区。"><span class="toc-text">目标和步骤的误区。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用例粒度的误区。"><span class="toc-text">用例粒度的误区。</span></a></li></ol>
   </div>
 
 
@@ -123,19 +120,14 @@
       <div class="post-nav-item post-nav-next">
         
           <span>〈 </span>
-          <a href="/2019/06/23/try/" rel="next" title="我不行和我试试">
-          我不行和我试试
+          <a href="/2019/07/03/relearnFrontend/" rel="next" title="“重学前端”专栏——学习笔记（1）">
+          “重学前端”专栏——学习笔记（1）
           </a>
         
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2019/07/04/elephantLearn/" rel="prev" title="《Thinking In UML》学习——用例(1)">
-            《Thinking In UML》学习——用例(1)
-          </a>
-          <span>〉</span>
-        
       </div>
     </div>
   
