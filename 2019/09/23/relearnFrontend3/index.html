@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="学习笔记,极客时间,重学前端,">
+  
+
+  
+    <meta name="description" content="“重学前端”专栏——面向对象、函数构造器、CSS（3）">
+  
+  
+  <link rel="icon" type="image/x-icon" href="/logo.png">
+  <title>“重学前端”专栏——面向对象、函数构造器、CSS（3） [ 打杂程序员 ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+</head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="/images/logo.png">
+    <span class="title">打杂程序员</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags" class="pure-menu-link">标签</a></li>
+          
+      
+  </ul>
+   
+</nav>
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        “重学前端”专栏——面向对象、函数构造器、CSS（3）
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2019-09-23T07:30:00.000Z">
+        2019-09-23
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/极客时间/">极客时间</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重学前端/">重学前端</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+    </header>
+
+    <div class="post-content">
+      <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><p>可参考Grandy Booch 《面向对象分析与设计》。</p>
+<p>面向对象是一种思想，并不一定得基于类，通过原型也可实现。</p>
+<p>原型系统的“复制操作”有两种实现思路：</p>
+<ol>
+<li>一个是并不真的去复制一个原型对象，二是使得新对象持有一个原型对象的引用；</li>
+<li>另一个是切实地复制对象，从此两个对象再无关联。</li>
+</ol>
+<p>JavaScript 创始人： Beendan Eich，现火狐 CTO 。其在创造 JavaScript 时，因政治因素，吸收了大量Java语法。</p>
+<p>JavaScript 对象的具体设计： 具有高度动态性的属性集合。Java中通过类限定了属性、方法的结构，但JavaScript是允许动态调整原型的，有利有弊。</p>
+<p>Es6支持class、extends，当我们使用类的思想来设计代码时，应该尽量使用class来声明类，而不是用旧语法，拿函数来模拟对象。</p>
+<p>对象分类：</p>
+<ol>
+<li>宿主对象（Host Objects）</li>
+<li>内置对象（Build-in Objects）<ol>
+<li>固有对象（Intrinsic Objects）</li>
+<li>原生对象（Native Objects）</li>
+<li>普通对象（Ordinary Objects） </li>
+</ol>
+</li>
+</ol>
+<h1 id="函数构造器"><a href="#函数构造器" class="headerlink" title="函数构造器"></a>函数构造器</h1><p>旧版 JavaScript 中，可以声明一个函数来作为“类”，函数本身也即构造器，通过函数、构造器都能创建对象。</p>
+<p>用户用function 关键字创建的函数必定同时是函数和构造器。不过，他们表现出来的行为效果确并不相同。</p>
+<p>用户使用new关键字+函数构建对象时，会先基于函数原型创建一个对象，再执行函数，函数中通过this获取该对象，若函数内返回一个对象，则以返回值作实际创建的对象，否则以原型对象作为实际创建的对象。</p>
+<p>Es6中函数不再作为构造器使用。</p>
+<p>使用原型和构造器的几个例子：</p>
+<ol>
+<li>利用构造器的执行规则来实现私有，也即闭包。</li>
+<li>函数通过原型传递其他信息，供调用处使用。如平台中的验证逻辑，默认执行后清空字段，但个别情况下应保留字段，供用户自行调整。这里就需要获取是否清空的信息，返回值已用来返回验证结果，若不设计返回值为对象，则可在验证函数的原型中增加属性是否清空，调用时读取验证函数的原型属性值，即可判断。</li>
+<li>Jquery的无new构建(也支持 new)。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">(<span class="built_in">window</span>)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建Jq构造器</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Jq</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Jq.fn.init();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建Jq原型，并赋予Jq.fn引用</span></span><br><span class="line">	Jq.fn = Jq.prototype = &#123;</span><br><span class="line">		init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*……*/</span>&#125;,</span><br><span class="line">		func1: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*……*/</span>&#125;,</span><br><span class="line">		func2: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">/*……*/</span>&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	</span><br><span class="line">	<span class="comment">//使init和Jq指向同一原型</span></span><br><span class="line">	Jq.fn.init.prototype = Jq.fn;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Jq暴露给外部</span></span><br><span class="line">	<span class="built_in">window</span>.Jq = Jq;</span><br><span class="line"></span><br><span class="line">&#125;(<span class="built_in">window</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><p>规则分配：</p>
+<ol>
+<li>at 规则</li>
+<li>普通规则<ol>
+<li>选择器</li>
+<li>声明列表<ol>
+<li>属性</li>
+<li>值<ol>
+<li>值得类型</li>
+<li>函数</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>p~ul选择前面有</p><p>元素的每个<ul>元素，即选择p之后出现的所有ul，两种元素必须拥有相同的父元素，但ul不必紧随p。</ul></p>
+<p>css中“&gt;”是css3中特有的选择器，A&gt;B表示选择A元素的所有子B元素，与A B不同的是，A B选择所有后代元素，为A&gt;B只选择一代。</p>
+<p>A+B{}这个+是选择相邻兄弟，称作“相邻兄弟选择器”，如果需要选择紧接在另一个元素后的元素，而且二者有相同的父元素，可以使用相邻兄弟选择器</p>
+<p>关于css中伪类及伪元素的总结 <a href="https://www.cnblogs.com/momo798/p/5947207.html" target="_blank" rel="noopener">访问</a></p>
+<p>推荐一下《css世界》这本书，有理论基础也有实战应用和常遇坑</p>
+
+    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#面向对象"><span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#函数构造器"><span class="toc-text">函数构造器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS"><span class="toc-text">CSS</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+<div class="share" style="width: 100%;">
+  
+  
+</div>
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2019/08/05/组件开发与单向数据流/" rel="next" title="组件开发与单向数据流">
+          组件开发与单向数据流
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="">首页</a> |
+        <a class="bottom-item" href="" target="_blank">主站</a> |
+        <a class="bottom-item" href="https://github.com/Cnzp" target="_blank">GitHub</a> |
+        <a class="bottom-item" href="https://hexo.io" target="_blank">Powered by hexo</a> |
+        <a class="bottom-item" href="https://github.com/KevinOfNeu/hexo-theme-xoxo" target="_blank">Theme xoxo</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+</body>
+</html>
